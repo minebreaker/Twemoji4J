@@ -22,9 +22,9 @@ public final class TwemojiOption {
     // default class name, by default 'emoji'
     private static final String CLASS_NAME = "emoji";
 
-    private BiFunction<Integer, TwemojiOption, String> callback;
+    private BiFunction<String, TwemojiOption, String> callback;
 
-    private BiFunction<String, Integer, Map<String, String>> attributes;
+    private BiFunction<String, String, Map<String, String>> attributes;
 
     private String base;
 
@@ -43,14 +43,14 @@ public final class TwemojiOption {
         this.className = CLASS_NAME;
     }
 
-    private static String generateDefaultImageSrc(Integer iconId, TwemojiOption options) {
+    private static String generateDefaultImageSrc(String iconId, TwemojiOption options) {
         return options.base + options.size + "/" + iconId + options.extension;
     }
 
     // TODO provide fluent builder
     public TwemojiOption(
-            BiFunction<Integer, TwemojiOption, String> callback,
-            BiFunction<String, Integer, Map<String, String>> attributes,
+            BiFunction<String, TwemojiOption, String> callback,
+            BiFunction<String, String, Map<String, String>> attributes,
             String base,
             String extension,
             String size,
@@ -63,11 +63,11 @@ public final class TwemojiOption {
         this.className = className;
     }
 
-    public BiFunction<Integer, TwemojiOption, String> getCallback() {
+    public BiFunction<String, TwemojiOption, String> getCallback() {
         return callback;
     }
 
-    public BiFunction<String, Integer, Map<String, String>> getAttributes() {
+    public BiFunction<String, String, Map<String, String>> getAttributes() {
         return attributes;
     }
 

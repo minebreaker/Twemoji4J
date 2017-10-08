@@ -8,6 +8,15 @@ import static org.junit.Assert.assertThat;
 public class TwemojiTest {
 
     @Test
+    public void testParse() {
+        String ret = Twemoji.parse("I \u2764\uFE0F emoji!");
+        assertThat(
+                ret,
+                is("I <img class=\"emoji\" draggable=\"false\" alt=\"\u2764\uFE0F\" src=\"https://twemoji.maxcdn.com/2/72x72/2764.png\"/> emoji!")
+        );
+    }
+
+    @Test
     public void testFromCodePoint() {
         String ret = Twemoji.fromCodePoint(127464);
         assertThat(ret, is("\ud83c\udde8"));

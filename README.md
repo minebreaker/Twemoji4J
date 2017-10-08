@@ -1,6 +1,6 @@
 # Twemoji4j
 
-Java folk of [Twemoji](https://github.com/twitter/twemoji).
+Java implementation of [Twemoji](https://github.com/twitter/twemoji).
 
 License: MIT
 
