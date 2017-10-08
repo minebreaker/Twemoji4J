@@ -27,6 +27,13 @@ public final class Twemoji {
         return parse(text, TwemojiOption.DEFAULT);
     }
 
+    /**
+     * Replace emojis in the given string with &lt;img&gt; tags.
+     *
+     * @param text
+     * @param options
+     * @return
+     */
     public static String parse(String text, TwemojiOption options) {
         return replace(text, raw -> {
             String iconId = grabIcon(raw);
@@ -56,6 +63,12 @@ public final class Twemoji {
         });
     }
 
+    /**
+     * Receiving the emoji surrogate pair, convert it into the icon ID (hexadecimal value of the codepoint).
+     *
+     * @param raw Emoji surrogate pair
+     * @return Icon ID
+     */
     private static String grabIcon(String raw) {
         int[] codePoints = toCodePoint(!raw.contains("\u200d") ? raw.replace("\ufe0f", "") : raw);
         return Arrays.stream(codePoints).mapToObj(Integer::toHexString).collect(joining("-"));
@@ -94,10 +107,22 @@ public final class Twemoji {
         return RE.matcher(text).find();
     }
 
+    /**
+     * Convert given int value into it's string representation.
+     *
+     * @param codePoint Codepoint
+     * @return Surrogate pair
+     */
     public static String fromCodePoint(int codePoint) {
         return String.valueOf(Character.toChars(codePoint));
     }
 
+    /**
+     * Convert given string into the array of codepoints.
+     *
+     * @param text String to convert
+     * @return int codepoint array.
+     */
     public static int[] toCodePoint(String text) {
         char[] surrogates = text.toCharArray();
         List<Integer> res = new ArrayList<>();  // TODO write int list impl. (Don't use any library to avoid dependencies)

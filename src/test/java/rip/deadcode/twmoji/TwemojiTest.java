@@ -1,5 +1,6 @@
 package rip.deadcode.twmoji;
 
+import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -13,6 +14,12 @@ public class TwemojiTest {
         assertThat(
                 ret,
                 is("I <img class=\"emoji\" draggable=\"false\" alt=\"\u2764\uFE0F\" src=\"https://twemoji.maxcdn.com/2/72x72/2764.png\"/> emoji!")
+        );
+        ret = Twemoji.parse("\u2764\uFE0F", new TwemojiOption.Builder().attributes(ImmutableMap.of("a", "<", "b", ">")).build());
+        assertThat(
+                ret,
+                is("<img class=\"emoji\" draggable=\"false\" alt=\"\u2764\uFE0F\" " +
+                   "src=\"https://twemoji.maxcdn.com/2/72x72/2764.png\" a=\"&lt;\" b=\"&gt;\"/>")
         );
     }
 
